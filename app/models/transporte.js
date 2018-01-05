@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var transportSchem = new Schema({
+var TransportSchema = new Schema({
   descripcion: {type: String, required: true},
   unidad: {type: String, required: true},
   costoUnit: {type: Number, required: true},
@@ -10,4 +10,4 @@ var transportSchem = new Schema({
   codigo: {type: Number, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('Transporte', transportSchem);
+module.exports = mongoose.model('Transporte', TransportSchema);

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var hyeSchem = new Schema({
+var HyESchema = new Schema({
   descripcion: {type: String, required: true},
   unidad: {type: String, required: true},
   precio: {type: Number, required: true},
@@ -10,4 +10,4 @@ var hyeSchem = new Schema({
   codigo: {type: Number, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('HyE', hyeSchem);
+module.exports = mongoose.model('HyE', HyESchema);

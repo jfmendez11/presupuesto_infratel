@@ -1,0 +1,18 @@
+var mongoose = requiere('mongoose');
+var Material = requiere('./Material');
+var HyE = requiere('./HerramientaYEquipo');
+var Mo = requiere('./ManoDeObra');
+var Tranporte = requiere('./Transporte');
+var Schema = mongoose.Schema;
+
+var ItemSchema = new Schema ({
+  codigo: {type: Number, required: true, index: {unique: true}},
+  unidad: {type: String, required: true},
+  cantidad: {type: Number, rquired: true},
+  materiales: [{type: Schema.Types.ObjectId, ref: 'Material'}],
+  herrramientasYEquipos: [{type: Schema.Types.ObjectId, ref: 'HyE'}],
+  trabajadores: [{type: Schema.Types.ObjectId, ref: 'ManoObra'}],
+  transportes: [{type: Schema.Types.ObjectId, ref: 'Transporte'}]
+});
+
+module.exports = mogoose.model('Item', ItemSchema);

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var moSchem = new Schema({
+var MOSchema = new Schema({
   tipoDePersona: {type: String, required: true},
   unidad: {type: String, required: true},
   costo: {type: Number, required: true},
@@ -10,4 +10,4 @@ var moSchem = new Schema({
   codigo: {type: Number, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('ManoObra', moSchem);
+module.exports = mongoose.model('ManoObra', MOSchema);
