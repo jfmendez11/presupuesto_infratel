@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema ({
   codigo: {type: Number, required: true, index: {unique: true}},
+  descripcion: {type: String, required: true},
   unidad: {type: String, required: true},
   cantidad: {type: Number, rquired: true},
   materiales: [{type: Schema.Types.ObjectId, ref: 'Material'}],
