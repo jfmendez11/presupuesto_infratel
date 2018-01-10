@@ -133,12 +133,6 @@ module.exports = function(app, express) {
   		})
 
   		.delete(function(req, res) {
-  			if (role != "Supervisor") {
-  				return res.json({
-  					success: false,
-  					message: 'No estás autorizado.'
-  				});
-  			} else {
   				User.remove({
   					_id: req.params.user_id
   				}, function(err, user) {
@@ -147,7 +141,6 @@ module.exports = function(app, express) {
   						message: 'Usuario eliminado.'
   					});
   				});
-  			}
   		});
 
   	return apiRouter;
