@@ -1,8 +1,8 @@
-var mongoose = requiere('mongoose');
-var Material = requiere('./Material');
-var HyE = requiere('./HerramientaYEquipo');
-var Mo = requiere('./ManoDeObra');
-var Tranporte = requiere('./Transporte');
+var mongoose = require('mongoose');
+var Material = require('./Material');
+var HyE = require('./HerramientaYEquipo');
+var Mo = require('./ManoDeObra');
+var Tranporte = require('./Transporte');
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema ({
@@ -16,4 +16,4 @@ var ItemSchema = new Schema ({
   transportes: [{type: Schema.Types.ObjectId, ref: 'Transporte'}]
 });
 
-module.exports = mogoose.model('Item', ItemSchema);
+module.exports = mongoose.model('Item', ItemSchema);

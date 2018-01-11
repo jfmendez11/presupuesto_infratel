@@ -1,5 +1,5 @@
-var mongoose = requiere('mongoose');
-var Item = requiere('./Item');
+var mongoose = require('mongoose');
+var Item = require('./Item');
 var Schema = mongoose.Schema;
 
 var ProyectoSchema = new Schema({
