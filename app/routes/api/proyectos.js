@@ -32,8 +32,8 @@ module.exports = function(app, express) {
           if (req.body.idSensor && req.body.valorMedida) fueraDeRango(req.body.idSensor, req.body.valorMedida);*/
           next(); // make sure we go to the next routes and don't stop here
         /*}
-      });*/
-    /*} else {
+      });
+    } else {
       // if there is no token return an HTTP response of 403 (access forbidden) and an error message
       res.status(403).send({
         success: false,
@@ -87,7 +87,7 @@ module.exports = function(app, express) {
           if(err) res.send(err);
           if(req.body.nombre) proyecto.nombre = req.body.nombre;
 
-          Proyecto.save(function(err) {
+          proyecto.save(function(err) {
             if (err) res.send(err);
 
             res.json({message: 'Proyecto actualizado.'});
@@ -119,7 +119,7 @@ module.exports = function(app, express) {
             if (err) res.send(err);
             //TO-DO verificar que el item no existe.
             proyecto.items.push(item);
-            res.json({message: 'item creado'});
+            res.json({message: 'Item creado'});
             /*Proyecto.save(function(err) {
               if (err) res.send(err);
 

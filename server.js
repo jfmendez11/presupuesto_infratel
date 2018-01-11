@@ -26,6 +26,18 @@ mongoose.connect(config.database);
 var apiRoutesProyectos = require('./app/routes/api/proyectos')(app, express);
 app.use('/proyectos', apiRoutesProyectos);
 
+var apiRoutesHyE = require('./app/routes/api/herramientasYEquipos')(app, express);
+app.use('/hye', apiRoutesHyE);
+
+var apiRoutesMateriales = require('./app/routes/api/materiales')(app, express);
+app.use('/materiales', apiRoutesMateriales);
+
+var apiRoutesMO = require('./app/routes/api/trabajadores')(app, express);
+app.use('/mo', apiRoutesMO);
+
+var apiRoutesTransportes = require('./app/routes/api/transportes')(app, express);
+app.use('/transportes', apiRoutesTransportes);
+
 app.listen(config.port);
 
 //Verificar que sirva
