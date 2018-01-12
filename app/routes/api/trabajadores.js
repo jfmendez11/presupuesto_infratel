@@ -84,6 +84,8 @@ module.exports = function(app, express) {
         if(req.body.tipoDePersona) trabajador.tipoDePersona = req.body.tipoDePersona;
         if(req.body.unidad) trabajador.unidad = req.body.unidad;
         if(req.body.costo) trabajador.costo = req.body.costo;
+        if(req.body.rendimiento) trabajador.rendimiento = req.body.rendimiento;
+        if(req.body.valorUnit) trabajador.valorUnit = req.body.valorUnit;
 
         trabajador.save(function(err) {
           if (err) res.send(err);

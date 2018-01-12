@@ -86,6 +86,8 @@ module.exports = function(app, express) {
           if(req.body.unidad) hye.unidad = req.body.unidad;
           if(req.body.precio) hye.precio = req.body.precio;
           if(req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
+          if(req.body.rendimiento) hye.rendimiento = req.body.rendimiento;
+          if(req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
 
           hye.save(function(err) {
             if (err) res.send(err);

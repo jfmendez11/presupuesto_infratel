@@ -88,6 +88,8 @@ module.exports = function (app, express) {
         if(req.body.valorUnitMat) material.valorUnitMat = req.body.valorUnitMat;
         if(req.body.tipo) material.tipo = req.body.tipo;
         if(req.body.clase) material.clase = req.body.clase;
+        if(req.body.cantidad) material.cantidad = req.body.cantidad;
+        if(req.body.valorTot) material.valorTotMat = req.body.valorTotMat; 
 
         material.save(function(err) {
           if (err) res.send(err);

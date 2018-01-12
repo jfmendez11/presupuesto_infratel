@@ -84,6 +84,8 @@ module.exports = function(app, express) {
         if(req.body.descripcion) transporte.descripcion = req.body.descripcion;
         if(req.body.unidad) transporte.unidad = req.body.unidad;
         if(req.body.costoUnit) transporte.costoUnit = req.body.costoUnit;
+        if(req.body.rendimiento) trabajador.rendimiento = req.body.rendimiento;
+        if(req.body.valorUnit) trabajador.valorUnit = req.body.valorUnit;
 
         transporte.save(function(err) {
           if (err) res.send(err);
