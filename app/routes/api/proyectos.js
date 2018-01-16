@@ -110,34 +110,84 @@ module.exports = function(app, express) {
 
         .post(function(req, res) {
           var item = new Item();
-          item.codigo = itemSize;
-          item.descripcion = req.body.descripcion;
-          item.unidad = req.body.unidad;
-          item.cantidad = req.body.cantidad;
 
           Proyecto.findById(req.params.id_proyecto, function(err, proyecto) {
             if (err) res.send(err);
             //TO-DO verificar que el item no existe.
-            proyecto.items.push(item);
-            res.json({message: 'Item creado'});
-            /*Proyecto.save(function(err) {
-              if (err) res.send(err);
-
-              res.json({message: 'Item creado.'});
-            });*/
+            if (proyecto != null){
+              item.codigo = req.body.codigo;
+              item.descripcion = req.body.descripcion;
+              item.unidad = req.body.unidad;
+              item.cantidad = req.body.cantidad;
+              item.idProyecto = req.params.id_proyecto;
+              item.save(function (err) {
+                if(err) {
+                  if (err.code == 11000) return res.json({
+                    message: 'El item ya existe.'
+                  });
+                  else return res.send(err);
+                } else {
+                  res.json({
+                    message: 'Item creado.'
+                  });
+                }
+              });
+            } else return res.json({
+              message: 'El proyecto con ese id no existe.'
+            });
           });
         })
 
         .get(function (req, res) {
-          Proyecto.findById(req.params.id_proyecto, function(err, proyecto) {
-            if (err) res.send(err);
+          Item.find({idProyecto: req.params.id_proyecto},
+            function(err, items) {
+                if (err) res.send(err);
 
-            // return that user
-            itemSize = proyecto.items.length + 1;
-            res.json(proyecto.items);
+                // return that user
+                res.json(items);
+          });
+        })
+
+      //CRUD para ruta http://localhost:8080/proyectos/:id_proyecto/items/:id_item
+      apiRouter.route('/:id_proyecto/items/:id_item')
+
+        .get(function(req, res) {
+          Item.findOne({idProyecto: req.params.id_proyecto, _id: req.params.id_item},
+            function(err, item){
+              if(err) res.send(err);
+
+              res.json(item);
+          })
+        })
+
+        .put(function (req, res) {
+          Item.findOne({idProyecto: req.params.id_proyecto, _id: req.params.id_item},
+          function (err, item) {
+            if(err) res.send(err);
+
+            if(req.body.codigo) item.codigo = req.body.codigo;
+            if(req.body.descripcion) item.descripcion = req.body.descripcion;
+            if(req.body.unidad) item.unidad = req.body.unidad;
+            if(req.body.cantidad) item.cantidad = req.body.cantidad;
+
+            item.save(function (err) {
+              if(err) res.send(err);
+
+              res.json({message: 'Item actualizado.'});
+            });
+          });
+        })
+
+        .delete(function (req, res) {
+          Item.remove({
+            _id: req.params.id_item,
+            idProyecto: req.params.id_proyecto
+          }, function (err, item) {
+            if(err) res.send(err);
+
+            res.json({message: 'Item eliminado.'});
           });
         });
-
 
     return apiRouter;
 };

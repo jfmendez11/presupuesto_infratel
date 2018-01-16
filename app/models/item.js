@@ -10,6 +10,7 @@ var ItemSchema = new Schema ({
   descripcion: {type: String, required: true},
   unidad: {type: String, required: true},
   cantidad: {type: Number, rquired: true},
+  idProyecto: {type: Schema.Types.ObjectId, ref: 'Proyecto'},
   materiales: [{type: Schema.Types.ObjectId, ref: 'Material'}],
   herrramientasYEquipos: [{type: Schema.Types.ObjectId, ref: 'HyE'}],
   trabajadores: [{type: Schema.Types.ObjectId, ref: 'ManoObra'}],
