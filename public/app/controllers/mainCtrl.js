@@ -13,7 +13,7 @@ angular.module('mainCtrl', [])
 
 		// get user information on page load
 		Auth.getUser()
-			.success(function(data) {
+			.then(function(data) {
 				vm.user = data.data;
 			});
 	});
@@ -26,14 +26,14 @@ angular.module('mainCtrl', [])
 		vm.error = '';
 
 		Auth.login(vm.loginData.email, vm.loginData.password)
-			.success(function(data) {
+			.then(function(data) {
 				vm.processing = false;
 
 				// if a user successfully logs in, redirect to users page
-				if (data.success)
-					$location.path('/users');
+				if (data.data.success)
+					$location.path('/proyectos');
 				else
-					vm.error = data.message;
+					vm.error = data.data.message;
 
 			});
 	};
@@ -43,7 +43,8 @@ angular.module('mainCtrl', [])
 		Auth.logout();
 		vm.user = '';
 
-		$location.path('/login');
+		vm.user = {};
+		$location.path('/');
 	};
 
 	vm.createSample = function() {

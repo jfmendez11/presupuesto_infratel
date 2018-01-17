@@ -12,11 +12,11 @@ angular.module('authService', [])
 	var authFactory = {};
 
 	// log a user in
-	authFactory.login = function(username, password) {
+	authFactory.login = function(email, password) {
 
 		// return the promise object and its data
-		return $http.post('/api/authenticate', {
-			username: username,
+		return $http.post('/usuarios/authenticate', {
+			email: email,
 			password: password
 		})
 			.success(function(data) {
@@ -43,13 +43,9 @@ angular.module('authService', [])
 	// get the logged in user
 	authFactory.getUser = function() {
 		if (AuthToken.getToken())
-			return $http.get('/api/me', { cache: true });
+			return $http.get('/proyectos', { cache: true });
 		else
 			return $q.reject({ message: 'User has no token.' });
-	};
-
-	authFactory.createSampleUser = function() {
-		$http.post('/api/sample');
 	};
 
 	// return auth factory object
@@ -110,7 +106,7 @@ angular.module('authService', [])
 		// if our server returns a 403 forbidden response
 		if (response.status == 403) {
 			AuthToken.setToken();
-			$location.path('/login');
+			$location.path('/');
 		}
 
 		// return the errors from the server as a promise

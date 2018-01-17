@@ -25,6 +25,11 @@
 				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat spinner"></span></span>
 			</button>
 
+			<button type="submit" class="btn btn-block btn-primary">
+				<span ng-if="!login.processing">Crear nuevo usuario</span>
+				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat spinner"></span></span>
+			</button>
+
 		</form>
 	</div>
 
