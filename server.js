@@ -23,6 +23,8 @@ app.use(morgan('dev'));
 //Conexión a la base de datos
 mongoose.connect(config.database);
 
+app.use(express.static(__dirname + '/public'));
+
 var apiRoutesProyectos = require('./app/routes/api/proyectos')(app, express);
 app.use('/proyectos', apiRoutesProyectos);
 
@@ -37,6 +39,13 @@ app.use('/mo', apiRoutesMO);
 
 var apiRoutesTransportes = require('./app/routes/api/transportes')(app, express);
 app.use('/transportes', apiRoutesTransportes);
+
+var apiRoutesUsuarios = require('./app/routes/api/usuarios')(app, express);
+app.use('/usuarios', apiRoutesUsuarios);
+
+app.get('*', function (req, res){
+	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+});
 
 app.listen(config.port);
 

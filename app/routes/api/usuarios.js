@@ -10,8 +10,8 @@ module.exports = function(app, express) {
 
   apiRouter.post('/authenticate', function (req, ser) {
     User.findOne({
-      email = req.body.email
-    }).select('email rol password').exc(function (err, user){
+      email: req.body.email
+    }).select('email password').exec(function (err, user){
       if (err) throw err;
       if (!user) {
         res.json({
@@ -115,7 +115,6 @@ module.exports = function(app, express) {
   					if (err) res.send(err);
   					res.json(user);
   				});
-  			}
   		})
 
   		.put(function(req, res) {
