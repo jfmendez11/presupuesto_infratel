@@ -1,3 +1,4 @@
+/* global require */
 var mongoose = require("mongoose");
 var Material = require("./Material");
 var HyE = require("./HerramientaYEquipo");

@@ -1,15 +1,16 @@
+/* global require */
 var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 var superSecret = config.secret;
 var HyE = require("../../models/HerramientaYEquipo");
 
-module.exports = function(app, express) {
+module.exports = function (app, express) {
   var apiRouter = express.Router();
 
   //Middleware para verificar el token
 
-  apiRouter.use(function(req, res, next){
+  apiRouter.use(function (req, res, next) {
     /*var token = req.body.token || req.query.token || req.headers["x-access-token"];
     // decode token
     if (token) {
@@ -24,16 +25,16 @@ module.exports = function(app, express) {
           // if everything is good, save to request for use in other routes
           req.decoded = decoded;
           if (req.body.idSensor && req.body.valorMedida) fueraDeRango(req.body.idSensor, req.body.valorMedida);*/
-          next(); // make sure we go to the next routes and don"t stop here
-        /*}
-      });
-    } else {
-      // if there is no token return an HTTP response of 403 (access forbidden) and an error message
-      res.status(403).send({
-        success: false,
-        message: "No token provided."
-      });
-    }*/
+    next(); // make sure we go to the next routes and don"t stop here
+    /*}
+  });
+} else {
+  // if there is no token return an HTTP response of 403 (access forbidden) and an error message
+  res.status(403).send({
+    success: false,
+    message: "No token provided."
+  });
+}*/
   });
 
   //CRUD para ruta http://localhost:8080/hye
@@ -54,57 +55,57 @@ module.exports = function(app, express) {
           else
             return res.send(err);
         }
-        return res.json({message: "Herramienta o equipo creado."});
+        return res.json({ message: "Herramienta o equipo creado." });
       });
     })
 
     .get(function (req, res) {
-      HyE.find({}, function(err, hyes) {
+      HyE.find({}, function (err, hyes) {
         if (err) res.send(err);
 
         res.json(hyes);
       });
     });
 
-    //CRUD para ruta http://localhost:8080/hye/:id_herrYequip
+  //CRUD para ruta http://localhost:8080/hye/:id_herrYequip
 
-    apiRouter.route("/:id_herrYequip")
+  apiRouter.route("/:id_herrYequip")
 
-      .get(function(req, res) {
-        HyE.findById(req.params.id_herrYequip, function(err, hye) {
+    .get(function (req, res) {
+      HyE.findById(req.params.id_herrYequip, function (err, hye) {
+        if (err) res.send(err);
+
+        // return that user
+        res.json(hye);
+      });
+    })
+
+    .put(function (req, res) {
+      HyE.findById(req.params.id_herrYequip, function (err, hye) {
+        if (err) res.send(err);
+        if (req.body.descripcion) hye.descripcion = req.body.descripcion;
+        if (req.body.unidad) hye.unidad = req.body.unidad;
+        if (req.body.precio) hye.precio = req.body.precio;
+        if (req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
+        if (req.body.rendimiento) hye.rendimiento = req.body.rendimiento;
+        if (req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
+
+        hye.save(function (err) {
           if (err) res.send(err);
 
-          // return that user
-          res.json(hye);
-        });
-      })
-
-      .put(function (req, res) {
-        HyE.findById(req.params.id_herrYequip, function(err, hye) {
-          if(err) res.send(err);
-          if(req.body.descripcion) hye.descripcion = req.body.descripcion;
-          if(req.body.unidad) hye.unidad = req.body.unidad;
-          if(req.body.precio) hye.precio = req.body.precio;
-          if(req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
-          if(req.body.rendimiento) hye.rendimiento = req.body.rendimiento;
-          if(req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
-
-          hye.save(function(err) {
-            if (err) res.send(err);
-
-            res.json({message: "Herramienta o equipo actualizado."});
-          });
-        });
-      })
-
-      .delete(function (req, res) {
-        HyE.remove({
-          _id: req.params.id_herrYequip
-        }, function (err, hye) {
-          if (err) res.send(err);
-
-          res.json({message: "Herramienta o equipo eliminado."});
+          res.json({ message: "Herramienta o equipo actualizado." });
         });
       });
-    return apiRouter;
+    })
+
+    .delete(function (req, res) {
+      HyE.remove({
+        _id: req.params.id_herrYequip
+      }, function (err, hye) {
+        if (err) res.send(err);
+
+        res.json({ message: "Herramienta o equipo eliminado." });
+      });
+    });
+  return apiRouter;
 };

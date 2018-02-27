@@ -1,3 +1,4 @@
+/* global require */
 var mongoose = require("mongoose");
 var Item = require("./Item");
 var Schema = mongoose.Schema;
