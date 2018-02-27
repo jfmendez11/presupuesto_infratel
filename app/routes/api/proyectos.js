@@ -147,7 +147,7 @@ module.exports = function (app, express) {
           // return that user
           res.json(items);
         });
-    })
+    });
 
   //CRUD para ruta http://localhost:8080/proyectos/:id_proyecto/items/:id_item
   apiRouter.route("/:id_proyecto/items/:id_item")
@@ -158,7 +158,7 @@ module.exports = function (app, express) {
           if (err) res.send(err);
 
           res.json(item);
-        })
+        });
     })
 
     .put(function (req, res) {
