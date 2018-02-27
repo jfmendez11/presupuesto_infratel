@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var MaterialSchema = new Schema({
@@ -12,4 +12,4 @@ var MaterialSchema = new Schema({
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('Material', MaterialSchema);
+module.exports = mongoose.model("Material", MaterialSchema);

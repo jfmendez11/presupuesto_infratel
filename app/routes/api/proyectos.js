@@ -1,13 +1,13 @@
-var bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
-var config = require('../../../config');
+var bodyParser = require("body-parser");
+var jwt = require("jsonwebtoken");
+var config = require("../../../config");
 var superSecret = config.secret;
-var Proyecto = require('../../models/Proyecto');
-var Item = require('../../models/Item');
-var HyE = require('../../models/HerramientaYEquipo');
-var Material = require('../../models/Material');
-var Mo = require('../../models/ManoDeObra');
-var Transporte = require('../../models/Transporte');
+var Proyecto = require("../../models/Proyecto");
+var Item = require("../../models/Item");
+var HyE = require("../../models/HerramientaYEquipo");
+var Material = require("../../models/Material");
+var Mo = require("../../models/ManoDeObra");
+var Transporte = require("../../models/Transporte");
 
 module.exports = function(app, express) {
 
@@ -16,7 +16,7 @@ module.exports = function(app, express) {
   //Middleware para verificar el token
 
   apiRouter.use(function(req, res, next){
-    /*var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    /*var token = req.body.token || req.query.token || req.headers["x-access-token"];
     // decode token
     if (token) {
       // verifies secret and checks exp
@@ -24,27 +24,27 @@ module.exports = function(app, express) {
         if (err) {
           res.status(403).send({
             success: false,
-            message: 'Failed to authenticate token.'
+            message: "Failed to authenticate token."
           });
         } else {
           // if everything is good, save to request for use in other routes
           req.decoded = decoded;
           if (req.body.idSensor && req.body.valorMedida) fueraDeRango(req.body.idSensor, req.body.valorMedida);*/
-          next(); // make sure we go to the next routes and don't stop here
+          next(); // make sure we go to the next routes and don"t stop here
         /*}
       });
     } else {
       // if there is no token return an HTTP response of 403 (access forbidden) and an error message
       res.status(403).send({
         success: false,
-        message: 'No token provided.'
+        message: "No token provided."
       });
     }*/
   });
 
   //CRUD para ruta http://localhost:8080/proyectos
 
-  apiRouter.route('/')
+  apiRouter.route("/")
 
     .post(function (req, res) {
       var proyect = new Proyecto();
@@ -53,11 +53,11 @@ module.exports = function(app, express) {
       proyect.save(function (err) {
         if (err) {
           if (err.code == 11000)
-            return res.json({success: false, message: 'Ya existe un proyecto con este nombre.'});
+            return res.json({success: false, message: "Ya existe un proyecto con este nombre."});
           else
             return res.send(err);
         }
-        return res.json({message: 'Proyecto creado.'});
+        return res.json({message: "Proyecto creado."});
       });
     })
 
@@ -71,7 +71,7 @@ module.exports = function(app, express) {
 
     //CRUD para ruta http://localhost:8080/proyectos/:id_proyecto
 
-    apiRouter.route('/:id_proyecto')
+    apiRouter.route("/:id_proyecto")
 
       .get(function(req, res) {
         Proyecto.findById(req.params.id_proyecto, function(err, proyecto) {
@@ -90,7 +90,7 @@ module.exports = function(app, express) {
           proyecto.save(function(err) {
             if (err) res.send(err);
 
-            res.json({message: 'Proyecto actualizado.'});
+            res.json({message: "Proyecto actualizado."});
           });
         });
       })
@@ -101,12 +101,12 @@ module.exports = function(app, express) {
         }, function (err, proyecto) {
           if (err) res.send(err);
 
-          res.json({message: 'Proyecto eliminado.'});
+          res.json({message: "Proyecto eliminado."});
         });
       });
 
       //CRUD para ruta http://localhost:8080/proyectos/:id_proyecto/items
-      apiRouter.route('/:id_proyecto/items')
+      apiRouter.route("/:id_proyecto/items")
 
         .post(function(req, res) {
           var item = new Item();
@@ -123,17 +123,17 @@ module.exports = function(app, express) {
               item.save(function (err) {
                 if(err) {
                   if (err.code == 11000) return res.json({
-                    message: 'El item ya existe.'
+                    message: "El item ya existe."
                   });
                   else return res.send(err);
                 } else {
                   res.json({
-                    message: 'Item creado.'
+                    message: "Item creado."
                   });
                 }
               });
             } else return res.json({
-              message: 'El proyecto con ese id no existe.'
+              message: "El proyecto con ese id no existe."
             });
           });
         })
@@ -149,7 +149,7 @@ module.exports = function(app, express) {
         })
 
       //CRUD para ruta http://localhost:8080/proyectos/:id_proyecto/items/:id_item
-      apiRouter.route('/:id_proyecto/items/:id_item')
+      apiRouter.route("/:id_proyecto/items/:id_item")
 
         .get(function(req, res) {
           Item.findOne({idProyecto: req.params.id_proyecto, _id: req.params.id_item},
@@ -173,7 +173,7 @@ module.exports = function(app, express) {
             item.save(function (err) {
               if(err) res.send(err);
 
-              res.json({message: 'Item actualizado.'});
+              res.json({message: "Item actualizado."});
             });
           });
         })
@@ -185,7 +185,7 @@ module.exports = function(app, express) {
           }, function (err, item) {
             if(err) res.send(err);
 
-            res.json({message: 'Item eliminado.'});
+            res.json({message: "Item eliminado."});
           });
         });
 

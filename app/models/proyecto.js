@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Item = require('./Item');
+var mongoose = require("mongoose");
+var Item = require("./Item");
 var Schema = mongoose.Schema;
 
 var ProyectoSchema = new Schema({
@@ -7,4 +7,4 @@ var ProyectoSchema = new Schema({
   nombre: {type: String, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('Proyecto', ProyectoSchema);
+module.exports = mongoose.model("Proyecto", ProyectoSchema);

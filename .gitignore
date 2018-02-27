@@ -22,3 +22,6 @@ yarn-error.log*
 
 # Data for helping develop app
 /data
+
+#ESLint
+.eslintrc.js

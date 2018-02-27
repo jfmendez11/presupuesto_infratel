@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var HyESchema = new Schema({
@@ -10,4 +10,4 @@ var HyESchema = new Schema({
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('HyE', HyESchema);
+module.exports = mongoose.model("HyE", HyESchema);

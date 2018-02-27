@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var TransportSchema = new Schema({
@@ -10,4 +10,4 @@ var TransportSchema = new Schema({
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 
-module.exports = mongoose.model('Transporte', TransportSchema);
+module.exports = mongoose.model("Transporte", TransportSchema);

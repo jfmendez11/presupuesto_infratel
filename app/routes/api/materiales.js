@@ -1,8 +1,8 @@
-var bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
-var config = require('../../../config');
+var bodyParser = require("body-parser");
+var jwt = require("jsonwebtoken");
+var config = require("../../../config");
 var superSecret = config.secret;
-var Material = require('../../models/Material');
+var Material = require("../../models/Material");
 
 module.exports = function (app, express) {
   var apiRouter = express.Router();
@@ -10,7 +10,7 @@ module.exports = function (app, express) {
   //Middleware para verificar el token
 
   apiRouter.use(function(req, res, next){
-    /*var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    /*var token = req.body.token || req.query.token || req.headers["x-access-token"];
     // decode token
     if (token) {
       // verifies secret and checks exp
@@ -18,27 +18,27 @@ module.exports = function (app, express) {
         if (err) {
           res.status(403).send({
             success: false,
-            message: 'Failed to authenticate token.'
+            message: "Failed to authenticate token."
           });
         } else {
           // if everything is good, save to request for use in other routes
           req.decoded = decoded;
           if (req.body.idSensor && req.body.valorMedida) fueraDeRango(req.body.idSensor, req.body.valorMedida);*/
-          next(); // make sure we go to the next routes and don't stop here
+          next(); // make sure we go to the next routes and don"t stop here
         /*}
       });
     } else {
       // if there is no token return an HTTP response of 403 (access forbidden) and an error message
       res.status(403).send({
         success: false,
-        message: 'No token provided.'
+        message: "No token provided."
       });
     }*/
   });
 
   //CRUD para ruta http://localhost:8080/materiales
 
-  apiRouter.route('/')
+  apiRouter.route("/")
 
   .post(function (req, res) {
     var material = new Material();
@@ -51,11 +51,11 @@ module.exports = function (app, express) {
     material.save(function (err) {
       if (err) {
         if (err.code == 11000)
-          return res.json({success: false, message: 'Ya existe un material con este nombre.'});
+          return res.json({success: false, message: "Ya existe un material con este nombre."});
         else
           return res.send(err);
       }
-      return res.json({message: 'Material creado.'});
+      return res.json({message: "Material creado."});
     });
   })
 
@@ -69,7 +69,7 @@ module.exports = function (app, express) {
 
   //CRUD para ruta http://localhost:8080/materiales/:id_material
 
-  apiRouter.route('/:id_material')
+  apiRouter.route("/:id_material")
 
     .get(function(req, res) {
       Material.findById(req.params.id_material, function(err, material) {
@@ -94,7 +94,7 @@ module.exports = function (app, express) {
         material.save(function(err) {
           if (err) res.send(err);
 
-          res.json({message: 'Material actualizado.'});
+          res.json({message: "Material actualizado."});
         });
       });
     })
@@ -105,7 +105,7 @@ module.exports = function (app, express) {
       }, function (err, material) {
         if (err) res.send(err);
 
-        res.json({message: 'Material eliminado.'});
+        res.json({message: "Material eliminado."});
       });
     });
 
