@@ -1,19 +1,22 @@
 {
-  "name": "presupuesto_infratel",
-  "version": "1.0.0",
-  "description": "Programa de ayuda para la autimatización de presupuestos mediante Análisis de Precio Unitario (APU) de la compañía Infratel",
-  "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jfmendez11/presupuesto_infratel"
-  },
+  "name": "presupuesto-infratel",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.13.7",
-    "morgan": "^1.9.0"
+    "jsonwebtoken": "^8.1.1",
+    "mongoose": "^5.0.7",
+    "morgan": "^1.9.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
   },
-  "author": "Juan Felipe Méndez Peralta"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }
