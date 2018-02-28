@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let HyESchema = new Schema({
+const HyESchema = new Schema({
   descripcion: {type: String, required: true, index: {unique: true}},
   unidad: {type: String, required: true},
   costoUnit: {type: Number, required: true}

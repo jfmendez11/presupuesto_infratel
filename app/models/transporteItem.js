@@ -2,13 +2,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Tranporte = require("./transporte");
-const item = require("./item");
+const item = require("./Item");
 
-let TransportISchema = new Schema({
+const TransportISchema = new Schema({
   rendimiento: {type: Number, required: false}, //Ingresado por le usuario
   valorUnit: {type: Number, required: false}, //mirar despues
   transporte: {type: Schema.Types.ObjectId, ref: "Transporte"},
-  item: {type: Schema.type.ObjectId, ref: "Item"}
+  item: {type: Schema.Types.ObjectId, ref: "Item"}
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 

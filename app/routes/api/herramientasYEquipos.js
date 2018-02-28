@@ -1,17 +1,17 @@
 /* global require */
-var bodyParser = require("body-parser");
-var jwt = require("jsonwebtoken");
-var config = require("../../../config");
-var superSecret = config.secret;
-var HyE = require("../../models/herramientaYEquipo");
+const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const config = require("../../../config");
+const superSecret = config.secret;
+const HyE = require("../../models/herramientaYEquipo");
 
 module.exports = function (app, express) {
-  var apiRouter = express.Router();
+  let apiRouter = express.Router();
 
   //Middleware para verificar el token
 
   apiRouter.use(function (req, res, next) {
-    /*var token = req.body.token || req.query.token || req.headers["x-access-token"];
+    /*let token = req.body.token || req.query.token || req.headers["x-access-token"];
     // decode token
     if (token) {
       // verifies secret and checks exp
@@ -42,7 +42,7 @@ module.exports = function (app, express) {
   apiRouter.route("/")
 
     .post(function (req, res) {
-      var hye = new HyE();
+      let hye = new HyE();
       hye.descripcion = req.body.descripcion;
       hye.unidad = req.body.unidad;
       hye.costoUnit = req.body.precio;

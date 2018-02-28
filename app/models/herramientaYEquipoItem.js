@@ -2,13 +2,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const HyE = require("./herramientaYEquipo");
-const item = require("./item");
+const item = require("./Item");
 
-let HyEISchema = new Schema({
+const HyEISchema = new Schema({
   rendimiento: {type: Number, required: false},
   valorUnit: {type: Number, required: false},
   herrramientasYEquipos: {type: Schema.Types.ObjectId, ref: "HyE"},
-  item: {type: Schema.type.ObjectId, ref: "Item"}
+  item: {type: Schema.Types.ObjectId, ref: "Item"}
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 

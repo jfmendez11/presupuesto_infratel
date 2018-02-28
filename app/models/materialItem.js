@@ -2,12 +2,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Material = require("./material");
-const item = require("./item");
+const item = require("./Item");
 
-let MaterialISchema = new Schema({
+const MaterialISchema = new Schema({
   costorUnit: {type: Number, required: false},
   material: {type: Schema.Types.ObjectId, ref: "Material"},
-  item: {type: Schema.type.ObjectId, ref: "Item"}
+  item: {type: Schema.Types.ObjectId, ref: "Item"}
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 

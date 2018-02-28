@@ -1,23 +1,23 @@
 /* global require */
-var bodyParser = require("body-parser");
-var jwt = require("jsonwebtoken");
-var config = require("../../../config");
-var superSecret = config.secret;
-var Proyecto = require("../../models/proyecto");
-var Item = require("../../models/item");
-var HyE = require("../../models/herramientaYEquipoItem");
-var Material = require("../../models/materialItem");
-var Mo = require("../../models/manoDeObraItem");
-var Transporte = require("../../models/transporteItem");
+const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const config = require("../../../config");
+const superSecret = config.secret;
+const Proyecto = require("../../models/proyecto");
+const Item = require("../../models/Item");
+const HyE = require("../../models/herramientaYEquipoItem");
+const Material = require("../../models/materialItem");
+const Mo = require("../../models/manoDeObraItem");
+const Transporte = require("../../models/transporteItem");
 
 module.exports = function (app, express) {
 
-  var apiRouter = express.Router();
-  var itemSize;
+  let apiRouter = express.Router();
+  let itemSize;
   //Middleware para verificar el token
 
   apiRouter.use(function (req, res, next) {
-    /*var token = req.body.token || req.query.token || req.headers["x-access-token"];
+    /*let token = req.body.token || req.query.token || req.headers["x-access-token"];
     // decode token
     if (token) {
       // verifies secret and checks exp
@@ -48,7 +48,7 @@ module.exports = function (app, express) {
   apiRouter.route("/")
 
     .post(function (req, res) {
-      var proyect = new Proyecto();
+      let proyect = new Proyecto();
       proyect.nombre = req.body.nombre;
 
       proyect.save(function (err) {
@@ -110,7 +110,7 @@ module.exports = function (app, express) {
   apiRouter.route("/:id_proyecto/items")
 
     .post(function (req, res) {
-      var item = new Item();
+      let item = new Item();
 
       Proyecto.findById(req.params.id_proyecto, function (err, proyecto) {
         if (err) res.send(err);
@@ -192,7 +192,7 @@ module.exports = function (app, express) {
     //Materiales: http://localhost:8080/proyectos/:id_proyecto/items/:id_item/materiales
     apiRouter.route("/:id_proyecto/items/:id_item/materiales")
     .post(function (req, res) {
-      var materialI = new Material();
+      let materialI = new Material();
       materialI.valorUnit = req.body.valorUnit;
       materialI.item = req.params.id_item;
       materialI.material = req.body.material;
@@ -257,7 +257,7 @@ module.exports = function (app, express) {
     //HyE: http://localhost:8080/proyectos/:id_proyecto/items/:id_item/hyes
     apiRouter.route("/:id_proyecto/items/:id_item/hyes")
     .post(function (req, res) {
-      var hyeI = new HyE();
+      let hyeI = new HyE();
       hyeI.valorUnit = req.body.valorUnit;
       hyeI.item = req.params.id_item;
       hyeI.material = req.body.material;
@@ -323,7 +323,7 @@ module.exports = function (app, express) {
     //Trabajadores: http://localhost:8080/proyectos/:id_proyecto/items/:id_item/trabajadores
     apiRouter.route("/:id_proyecto/items/:id_item/trabajadores")
     .post(function (req, res) {
-      var trabajadorI = new Mo();
+      let trabajadorI = new Mo();
       trabajadorI.valorUnit = req.body.valorUnit;
       trabajadorI.item = req.params.id_item;
       trabajadorI.material = req.body.material;
@@ -389,7 +389,7 @@ module.exports = function (app, express) {
     //Transportes: http://localhost:8080/proyectos/:id_proyecto/items/:id_item/transportes
     apiRouter.route("/:id_proyecto/items/:id_item/transportes")
     .post(function (req, res) {
-      var transporteI = new Transporte();
+      let transporteI = new Transporte();
       transporteI.costoUnit = req.body.costoUnit;
       transporteI.item = req.params.id_item;
       transporteI.material = req.body.material;

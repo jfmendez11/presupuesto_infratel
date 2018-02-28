@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Proyecto = require("./proyecto");
 const Schema = mongoose.Schema;
 
-let ItemSchema = new Schema ({
+const ItemSchema = new Schema ({
   //codigo: {type: Number, required: true, index: {unique: true}},
   descripcion: {type: String, required: true, index: {unique: true}},
   unidad: {type: String, required: true},

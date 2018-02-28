@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let MOSchema = new Schema({
+const MOSchema = new Schema({
   tipoDePersona: {type: String, required: true, index: {unique: true}},
   unidad: {type: String, required: true},
   costoUnit: {type: Number, required: true}
