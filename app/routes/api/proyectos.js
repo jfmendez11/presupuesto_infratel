@@ -3,12 +3,12 @@ var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 var superSecret = config.secret;
-var Proyecto = require("../../models/Proyecto");
-var Item = require("../../models/Item");
-var HyE = require("../../models/HerramientaYEquipo");
-var Material = require("../../models/Material");
-var Mo = require("../../models/ManoDeObra");
-var Transporte = require("../../models/Transporte");
+var Proyecto = require("../../models/proyecto");
+var Item = require("../../models/item");
+var HyE = require("../../models/herramientaYEquipoItem");
+var Material = require("../../models/materialItem");
+var Mo = require("../../models/manoDeObraItem");
+var Transporte = require("../../models/transporteItem");
 
 module.exports = function (app, express) {
 
