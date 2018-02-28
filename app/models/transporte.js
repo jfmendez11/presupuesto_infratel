@@ -1,8 +1,8 @@
 /* global require */
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var TransportSchema = new Schema({
+let TransportSchema = new Schema({
   descripcion: {type: String, required: true, index: {unique: true}},
   unidad: {type: String, required: true},
   costoUnit: {type: Number, required: true},

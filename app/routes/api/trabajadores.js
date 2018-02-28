@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 var superSecret = config.secret;
-var Mo = require("../../models/ManoDeObra");
+var Mo = require("../../models/manoDeObra");
 
 module.exports = function (app, express) {
   var apiRouter = express.Router();
@@ -45,7 +45,7 @@ module.exports = function (app, express) {
       var trabajador = new Mo();
       trabajador.tipoDePersona = req.body.tipoDePersona;
       trabajador.unidad = req.body.unidad;
-      trabajador.costo = req.body.costo;
+      trabajador.costoUnit = req.body.costoUnit;
 
       trabajador.save(function (err) {
         if (err) {
@@ -84,9 +84,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
         if (req.body.tipoDePersona) trabajador.tipoDePersona = req.body.tipoDePersona;
         if (req.body.unidad) trabajador.unidad = req.body.unidad;
-        if (req.body.costo) trabajador.costo = req.body.costo;
-        if (req.body.rendimiento) trabajador.rendimiento = req.body.rendimiento;
-        if (req.body.valorUnit) trabajador.valorUnit = req.body.valorUnit;
+        if (req.body.costo) trabajador.costo = req.body.costoUnit;
 
         trabajador.save(function (err) {
           if (err) res.send(err);

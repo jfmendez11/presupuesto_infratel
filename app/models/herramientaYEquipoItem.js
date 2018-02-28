@@ -1,15 +1,14 @@
 /* global require */
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let HyE = require("./HerramientaYEquipo");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const HyE = require("./herramientaYEquipo");
+const item = require("./item");
 
 let HyEISchema = new Schema({
-  descripcion: {type: String, required: true, index: {unique: true}},
-  unidad: {type: String, required: true},
-  precio: {type: Number, required: true},
   rendimiento: {type: Number, required: false},
   valorUnit: {type: Number, required: false},
-  herrramientasYEquipos: {type: Schema.Types.ObjectId, ref: "HyE"}
+  herrramientasYEquipos: {type: Schema.Types.ObjectId, ref: "HyE"},
+  item: {type: Schema.type.ObjectId, ref: "Item"}
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 

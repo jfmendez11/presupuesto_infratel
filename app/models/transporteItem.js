@@ -1,15 +1,14 @@
 /* global require */
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let Tranporte = require("./Transporte");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const Tranporte = require("./transporte");
+const item = require("./item");
 
 let TransportISchema = new Schema({
-  descripcion: {type: String, required: true, index: {unique: true}},
-  unidad: {type: String, required: true},
-  costoUnit: {type: Number, required: true},
   rendimiento: {type: Number, required: false}, //Ingresado por le usuario
   valorUnit: {type: Number, required: false}, //mirar despues
-  transportes: [{type: Schema.Types.ObjectId, ref: "Transporte"}]
+  transporte: {type: Schema.Types.ObjectId, ref: "Transporte"},
+  item: {type: Schema.type.ObjectId, ref: "Item"}
   //codigo: {type: Number, required: true, index: {unique: true}}
 });
 

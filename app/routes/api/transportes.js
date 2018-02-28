@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 var superSecret = config.secret;
-var Transporte = require("../../models/Transporte");
+var Transporte = require("../../models/transporte");
 
 module.exports = function (app, express) {
   var apiRouter = express.Router();
@@ -85,8 +85,6 @@ module.exports = function (app, express) {
         if (req.body.descripcion) transporte.descripcion = req.body.descripcion;
         if (req.body.unidad) transporte.unidad = req.body.unidad;
         if (req.body.costoUnit) transporte.costoUnit = req.body.costoUnit;
-        if (req.body.rendimiento) transporte.rendimiento = req.body.rendimiento;
-        if (req.body.valorUnit) transporte.valorUnit = req.body.valorUnit;
 
         transporte.save(function (err) {
           if (err) res.send(err);

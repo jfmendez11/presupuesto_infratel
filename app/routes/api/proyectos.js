@@ -116,7 +116,6 @@ module.exports = function (app, express) {
         if (err) res.send(err);
         //TO-DO verificar que el item no existe.
         if (proyecto != null) {
-          item.codigo = req.body.codigo;
           item.descripcion = req.body.descripcion;
           item.unidad = req.body.unidad;
           item.cantidad = req.body.cantidad;
@@ -166,7 +165,6 @@ module.exports = function (app, express) {
         function (err, item) {
           if (err) res.send(err);
 
-          if (req.body.codigo) item.codigo = req.body.codigo;
           if (req.body.descripcion) item.descripcion = req.body.descripcion;
           if (req.body.unidad) item.unidad = req.body.unidad;
           if (req.body.cantidad) item.cantidad = req.body.cantidad;

@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 var superSecret = config.secret;
-var Material = require("../../models/Material");
+var Material = require("../../models/material");
 
 module.exports = function (app, express) {
   var apiRouter = express.Router();
@@ -45,9 +45,7 @@ module.exports = function (app, express) {
       var material = new Material();
       material.descripcion = req.body.descripcion;
       material.unidad = req.body.unidad;
-      material.valorUnitMat = req.body.valorUnitMat;
-      material.clase = req.body.clase;
-      material.tipo = req.body.tipo;
+      material.costoUnit = req.body.costoUnit;
 
       material.save(function (err) {
         if (err) {
@@ -86,11 +84,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
         if (req.body.descripcion) material.descripcion = req.body.descripcion;
         if (req.body.unidad) material.unidad = req.body.unidad;
-        if (req.body.valorUnitMat) material.valorUnitMat = req.body.valorUnitMat;
-        if (req.body.tipo) material.tipo = req.body.tipo;
-        if (req.body.clase) material.clase = req.body.clase;
-        if (req.body.cantidad) material.cantidad = req.body.cantidad;
-        if (req.body.valorTot) material.valorTotMat = req.body.valorTotMat;
+        if (req.body.costoUnit) material.costoUnit = req.body.costoUnit;
 
         material.save(function (err) {
           if (err) res.send(err);

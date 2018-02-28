@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 var superSecret = config.secret;
-var HyE = require("../../models/HerramientaYEquipo");
+var HyE = require("../../models/herramientaYEquipo");
 
 module.exports = function (app, express) {
   var apiRouter = express.Router();
@@ -45,8 +45,7 @@ module.exports = function (app, express) {
       var hye = new HyE();
       hye.descripcion = req.body.descripcion;
       hye.unidad = req.body.unidad;
-      hye.precio = req.body.precio;
-      hye.valorUnit = req.body.valorUnit;
+      hye.costoUnit = req.body.precio;
 
       hye.save(function (err) {
         if (err) {
@@ -85,10 +84,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
         if (req.body.descripcion) hye.descripcion = req.body.descripcion;
         if (req.body.unidad) hye.unidad = req.body.unidad;
-        if (req.body.precio) hye.precio = req.body.precio;
-        if (req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
-        if (req.body.rendimiento) hye.rendimiento = req.body.rendimiento;
-        if (req.body.valorUnit) hye.valorUnit = req.body.valorUnit;
+        if (req.body.costoUnit) hye.precio = req.body.costoUnit;
 
         hye.save(function (err) {
           if (err) res.send(err);

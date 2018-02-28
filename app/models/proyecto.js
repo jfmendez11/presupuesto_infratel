@@ -1,9 +1,9 @@
 /* global require */
-var mongoose = require("mongoose");
-var Item = require("./Item");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Item = require("./Item");
+const Schema = mongoose.Schema;
 
-var ProyectoSchema = new Schema({
+let ProyectoSchema = new Schema({
   //id: {type: Number, required: true, index: {unique: true}},
   nombre: {type: String, required: true, index: {unique: true}}
 });
