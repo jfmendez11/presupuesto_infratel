@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Mo = require("./manoDeObra");
-const item = require("./Item");
+const item = require("./item");
 
 const MOISchema = new Schema({
   rendimiento: {type: Number, required: false}, //Ingresado por le usuario
