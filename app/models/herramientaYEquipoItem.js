@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const HyE = require("./herramientaYEquipo");
-const item = require("./Item");
+const item = require("./item");
 
 const HyEISchema = new Schema({
   rendimiento: {type: Number, required: false},
