@@ -1,6 +1,6 @@
 /* global require */
 var bodyParser = require("body-parser"); // get body-parser
-var User = require("../../models/Usuario");
+var User = require("../../models/usuario");
 var jwt = require("jsonwebtoken");
 var config = require("../../../config");
 
