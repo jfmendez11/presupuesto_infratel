@@ -1,6 +1,6 @@
 /* global require */
 const mongoose = require("mongoose");
-const Item = require("./Item");
+const Item = require("./item");
 const Schema = mongoose.Schema;
 
 const ProyectoSchema = new Schema({

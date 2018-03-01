@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Tranporte = require("./transporte");
-const item = require("./Item");
+const item = require("./item");
 
 const TransportISchema = new Schema({
   rendimiento: {type: Number, required: false}, //Ingresado por le usuario

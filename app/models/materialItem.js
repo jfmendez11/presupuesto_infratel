@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Material = require("./material");
-const item = require("./Item");
+const item = require("./item");
 
 const MaterialISchema = new Schema({
   costorUnit: {type: Number, required: false},
